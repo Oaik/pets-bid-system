@@ -5,18 +5,25 @@ const router = Router();
 
 router.post('/:petId', async (req, res) => {
     console.log("----- Route: POST -----", "/:petId");
-
-    await bidController.placeBid(req, res);
+    try {
+        await bidController.placeBid(req, res);
+    } catch(error) {
+        console.error(error);
+        res.status(400).send(error.message);
+    }
     
     res.send("Bid Placed successfully");
 })
 
 router.get('/:petId', async (req, res) => {
     console.log("----- Route: GET -----", "/:petId");
-
-    const bids = await bidController.getBids(req, res);
-
-    res.send(bids);
+    try {
+        const bids = await bidController.getBids(req, res);
+        res.send(bids);
+    } catch(error) {
+        console.error(error);
+        res.status(400).send(error.message);
+    }
 })
 
 module.exports = router;
