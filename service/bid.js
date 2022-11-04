@@ -1,9 +1,8 @@
 const bidDal = require('../dal/bid');
 
-module.exports.getBids = async function(bid, rpi, rps) {
+module.exports.getBids = async function(petId, rpi, rps) {
     console.log("-----Service:getBids-----")
 
-    const petId = bid.petId;
     const query = {
         petId: petId
     }
@@ -12,11 +11,11 @@ module.exports.getBids = async function(bid, rpi, rps) {
     return allBids;
 }
 
-module.exports.placeBid = async function(bid) {
+module.exports.placeBid = async function(bid, petId) {
     console.log("-----Service:placeBid-----")
 
     const query = {
-        petId: bid.petId,
+        petId: petId,
         ownerId: bid.ownerId,
         userId: bid.userId,
         price: bid.price
