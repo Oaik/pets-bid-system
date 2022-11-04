@@ -1,0 +1,17 @@
+{
+  "name": "bid-microserivce",
+  "version": "1.0.0",
+  "description": "Microservice for Bid management system",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "Omar Morsy <omarmorsy020@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3"
+  }
+}
