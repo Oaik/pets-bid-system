@@ -1,18 +1,25 @@
 const mongoose = require('mongoose');
+const uuid = require('uuid');
 
 const bidSchema = new mongoose.Schema(
     {
+        id: {
+            type: String,
+            required: true,
+            unique: true,
+            default: uuid.v4,
+        },
         petId: {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'pet'
+            type: String,
+            required: true,
         },
         ownerId: {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'user'
+            type: String,
+            required: true,
         },
         userId: {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'user'
+            type: String,
+            required: true,
         },
         price: {
             type: Number,
@@ -22,6 +29,7 @@ const bidSchema = new mongoose.Schema(
     { collection: 'Bid' }
 );
 
+bidSchema.index({ petId: 1 });
 
 var bidModel = mongoose.model(
     'Bid',
