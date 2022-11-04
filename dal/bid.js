@@ -11,3 +11,15 @@ module.exports.getBidsByPetId = async function(query, rpi, rps) {
         throw error;
     }
 }
+
+module.exports.placeBid = async function(query) {
+    console.log("-----dal:placeBid-----")
+
+    try {
+        const bid = new bidModel(query);
+        await bid.save();
+    } catch(error) {
+        console.error("Error in placeBid Case 0", '\n', error);
+        throw error;
+    }
+}
