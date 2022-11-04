@@ -380,6 +380,66 @@ paths:
               format: int32
       security:
         - api_key: []
+  /bid/{petId}:
+    post:
+      tags:
+        - bid
+      summary: Place a bid for a pet
+      description: ''
+      operationId: placeBid
+      consumes:
+        - application/json
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: petId
+          in: path
+          description: ID of pet to return
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: bid placed for purchasing the pet 
+          required: true
+          schema:
+            $ref: '#/definitions/Bid'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Bid'
+        '400':
+          description: Invalid Bid
+
+    get:
+      tags:
+        - bid
+      summary: list all bids that placed on the pet
+      description: Returns all the bids that placed on the pet
+      operationId: getBids
+      produces:
+        - application/json
+      parameters:
+        - name: petId
+          in: path
+          description: ID of pet to return
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Bid'
+        '404':
+          description: Bid not found
+      security:
+        - api_key: []
+  
   /user/createWithArray:
     post:
       tags:
@@ -706,6 +766,21 @@ definitions:
         description: User Status
     xml:
       name: User
+  Bid:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      petId:
+        type: integer
+        format: int64
+      userId:
+        type: integer
+        format: int64
+      price:
+        type: integer
+        format: int64        
 externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
