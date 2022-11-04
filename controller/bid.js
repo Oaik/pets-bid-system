@@ -1,4 +1,4 @@
-const bidsService = require('../service/bidsService');
+const bidsService = require('../service/bid');
 
 module.exports.getBids = async function(req, res) {
     const bid = req.body;
