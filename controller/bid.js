@@ -10,3 +10,10 @@ module.exports.getBids = async function(req, res) {
     const allBids = await bidsService.getBids(bid, rpi, rps);
     return allBids;
 }
+
+module.exports.placeBid = async function(req, res) {
+    console.log("-----controller:getBids-----")
+
+    const bid = req.body;
+    await bidsService.placeBid(bid);
+}
